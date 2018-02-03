@@ -1,0 +1,10 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	ignorecase = true
+	precomposeunicode = true
+	worktree = ./
+[remote "origin"]
+	url = https://github.com/trevynmace/csharp_react_template.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
