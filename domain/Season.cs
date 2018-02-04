@@ -6,6 +6,7 @@ namespace kromeSwan.domain
         public int SeasonId { get; set; }
         public DateTime StartDate { get; set; }
         public int NumberOfDays { get; set; }
-        //TODO: add a SeasonName
+        public string Name { get; set;  }
+        public string Description { get; set; }
     }
 }

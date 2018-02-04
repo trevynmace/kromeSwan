@@ -18,7 +18,7 @@ namespace kromeSwan.services
 
         public void CreateSeason(Season season)
         {
-            string sql = $"INSERT INTO seasons (startDate, numberOfDays) values ('{season.StartDate}', {season.NumberOfDays})";
+            string sql = $"INSERT INTO seasons (startDate, numberOfDays, name, description) values ('{season.StartDate}', {season.NumberOfDays}, '{season.Name}', '{season.Description}')";
 
             using (var connection = new SqlConnection(_configuration.Value.ConnectionString)){
                 connection.Open();
