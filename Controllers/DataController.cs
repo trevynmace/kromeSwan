@@ -26,7 +26,8 @@ namespace kromeSwan.Controllers
         }
 
         [HttpPost("[action]")]
-        public string CreateSeason(Season season){
+        public string CreateSeason([FromBody] Season season)
+        {
             try
             {
                 _dao.CreateSeason(season);
