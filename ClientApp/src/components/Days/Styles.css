@@ -1,0 +1,13 @@
+﻿body {
+}
+
+.days-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.day-card {
+    width: 95%;
+    flex: 1 0 13%;
+
+}
