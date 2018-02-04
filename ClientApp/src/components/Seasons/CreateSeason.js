@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react'
+import axios from 'axios'
 
 export class CreateSeason extends Component {
     constructor() {
@@ -7,13 +8,27 @@ export class CreateSeason extends Component {
             name: '',
             description: '',
             startDate: '',
-            numberOfDays: ''
+            numberOfDays: 0
         }
+
+        this.handleAddSeason = this.handleAddSeason.bind(this);
     }
 
     handleAddSeason = (evt) => {
         evt.preventDefault()
-        console.log("im hungery")
+
+        axios.post('/api/data/createSeason', {
+            name: this.state.name,
+            description: this.state.description,
+            startDate: this.state.startDate,
+            numberOfDays: this.state.numberOfDays
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
 
     render (){

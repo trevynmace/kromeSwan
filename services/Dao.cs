@@ -18,6 +18,15 @@ namespace kromeSwan.services
 
         public void CreateSeason(Season season)
         {
+            if(season.Name.Contains("'"))
+            {
+                season.Name.Replace("'", "");
+            }
+            if (season.Description.Contains("'"))
+            {
+                season.Description.Replace("'", "");
+            }
+
             string sql = $"INSERT INTO seasons (startDate, numberOfDays, name, description) values ('{season.StartDate}', {season.NumberOfDays}, '{season.Name}', '{season.Description}')";
 
             using (var connection = new SqlConnection(_configuration.Value.ConnectionString)){
