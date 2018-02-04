@@ -1,3 +1,5 @@
+using kromeSwan.domain;
+using kromeSwan.services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -8,12 +10,16 @@ namespace kromeSwan
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public IConfigurationRoot BackendConfiguration { get; set; }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            BackendConfiguration = builder.Build();
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -25,6 +31,12 @@ namespace kromeSwan
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddOptions();
+
+            services.Configure<Configuration>(BackendConfiguration);
+
+            services.AddSingleton<IDao, Dao>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
