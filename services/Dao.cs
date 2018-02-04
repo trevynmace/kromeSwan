@@ -16,6 +16,16 @@ namespace kromeSwan.services
             _configuration = configuration;
         }
 
+        public void CreateSeason(Season season)
+        {
+            string sql = $"INSERT INTO seasons (startDate, numberOfDays) values ('{season.StartDate}', {season.NumberOfDays})";
+
+            using (var connection = new SqlConnection(_configuration.Value.ConnectionString)){
+                connection.Open();
+                connection.Execute(sql);
+            }
+        }
+
         public Season GetSeasonById(int id)
         {
             string sql = $"SELECT * FROM seasons WHERE seasonId = {id};";
