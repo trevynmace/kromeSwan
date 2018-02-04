@@ -18,12 +18,17 @@ namespace kromeSwan.Controllers
         }
 
         [HttpGet("[action]")]
+        public List<Season> GetSeasons()
+        {
+            return _dao.GetSeasons();
+        }
+
+        [HttpGet("[action]")]
         public Season GetSeasonById(int id)
         {
             var season = _dao.GetSeasonById(id);
 
             return season;
-            //return $"SeasonId: {season.SeasonId}\nStartDate: {season.StartDate}\nNumberOfDays: {season.NumberOfDays}";
         }
 
         [HttpPost("[action]")]

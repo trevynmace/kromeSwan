@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 using Dapper;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace kromeSwan.services
 {
@@ -18,16 +19,22 @@ namespace kromeSwan.services
 
         public void CreateSeason(Season season)
         {
-            if(season.Name.Contains("'"))
+            var name = season.Name;
+            var description = season.Description;
+
+            var newName = "";
+            var newDescription = "";
+
+            if(name.Contains("'"))
             {
-                season.Name.Replace("'", "");
+                newName = name.Replace("'", "");
             }
-            if (season.Description.Contains("'"))
+            if (description.Contains("'"))
             {
-                season.Description.Replace("'", "");
+                newDescription = description.Replace("'", "");
             }
 
-            string sql = $"INSERT INTO seasons (startDate, numberOfDays, name, description) values ('{season.StartDate}', {season.NumberOfDays}, '{season.Name}', '{season.Description}')";
+            string sql = $"INSERT INTO seasons (startDate, numberOfDays, name, description) values ('{season.StartDate}', {season.NumberOfDays}, '{newName}', '{newDescription}')";
 
             using (var connection = new SqlConnection(_configuration.Value.ConnectionString)){
                 connection.Open();
@@ -45,6 +52,19 @@ namespace kromeSwan.services
 
                 var results = connection.Query<Season>(sql);
                 return results.First();
+            }
+        }
+
+        public List<Season> GetSeasons()
+        {
+            string sql = "SELECT * FROM seasons";
+
+            using (var connection = new SqlConnection(_configuration.Value.ConnectionString))
+            {
+                connection.Open();
+
+                var results = connection.Query<Season>(sql);
+                return results.ToList();
             }
         }
     }

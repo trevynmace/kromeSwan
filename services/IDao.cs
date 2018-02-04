@@ -1,4 +1,5 @@
-﻿using kromeSwan.domain;
+﻿using System.Collections.Generic;
+using kromeSwan.domain;
 
 namespace kromeSwan.services
 {
@@ -6,5 +7,6 @@ namespace kromeSwan.services
     {
         Season GetSeasonById(int id);
         void CreateSeason(Season season);
+        List<Season> GetSeasons();
     }
 }
