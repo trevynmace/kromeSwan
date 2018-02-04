@@ -8,6 +8,10 @@
 
 .day-card {
     width: 95%;
+    height: 80px;
     flex: 1 0 13%;
-
+    background-color: aquamarine;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
 }
