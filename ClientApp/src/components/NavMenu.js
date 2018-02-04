@@ -33,9 +33,9 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='th-list' /> Fetch data
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/days'}>
+            <LinkContainer to={'/createseason'}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Days
+                <Glyphicon glyph='th-list' /> Create Season
               </NavItem>
             </LinkContainer>
           </Nav>

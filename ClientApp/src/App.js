@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
-import { DayList } from './components/Days/DayList';
+import React, { Component } from 'react'
+import { Route } from 'react-router'
+import { Layout } from './components/Layout'
+import { Home } from './components/Home'
+import { FetchData } from './components/FetchData'
+import { Counter } from './components/Counter'
+import { DayList } from './components/Days/DayList'
+import { CreateSeason } from './components/Seasons/CreateSeason'
 
 export default class App extends Component {
   displayName = App.name
@@ -16,6 +17,7 @@ export default class App extends Component {
         <Route path='/counter' component={Counter} />
         <Route path='/fetchdata' component={FetchData} />
         <Route path='/days' component={DayList} />
+        <Route path='/createseason' component={CreateSeason} />
       </Layout>
     );
   }

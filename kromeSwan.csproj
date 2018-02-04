@@ -29,6 +29,7 @@
     <Folder Include="ClientApp\src\components\Days\" />
     <Folder Include="services\" />
     <Folder Include="domain\" />
+    <Folder Include="ClientApp\src\components\Seasons\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
