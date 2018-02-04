@@ -13,11 +13,13 @@ export class DayList extends Component {
   getDays() {
     this.days = this.props.numberOfDays
     if (!this.days || this.days < 1){
-        this.days = 3
+        this.days = 103
     }
 
     var d = new Date()
-    this.daysToBackfill = d.getDay()
+    this.daysToFrontfill = d.getDay()
+
+    this.daysToBackfill = 7 - Math.floor((this.daysToFrontfill + this.days) % 7)
   }
 
   render () {
@@ -25,13 +27,13 @@ export class DayList extends Component {
       <div>
         <div className="days-container">
           { this.getDays() }
-          { Array.apply(null, Array(this.daysToBackfill)).map(() => {
+          { Array.apply(null, Array(this.daysToFrontfill)).map(() => {
             return <DayCard/>
           }) }
           { Array.apply(null, Array(this.days)).map(() => {
             return <DayCard dayName={'blah'} dayDate={'1/1/18'}/>
           }) }
-          { Array.apply(null, Array(this.daysToBackfill - 1)).map(() => {
+          { Array.apply(null, Array(this.daysToBackfill)).map(() => {
             return <DayCard/>
           }) }
         </div>
